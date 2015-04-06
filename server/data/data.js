@@ -1,16 +1,28 @@
 exports.test = function() {
-  return {
-    0: {
+  return [
+    {
       "hightemp": 70,
       "lowtemp": 50,
       "clouds": 0.5,
       "rain": .2 
     },
-    1: {
+    {
       "hightemp": 60,
       "lowtemp": 30,
       "clouds": 0.8,
       "rain": .1
+    },
+    {
+      "hightemp": 80,
+      "lowtemp": 50,
+      "clouds": 0.0,
+      "rain": 0.0
+    },
+    {
+      "hightemp": 0,
+      "lowtemp": 0,
+      "clouds": 1,
+      "rain": 1
     }
-  }
+  ]
 }
