@@ -1,4 +1,4 @@
-d3.select("body")
+d3.select(".local")
       .selectAll("p")
       .data(["Hello World!"])
       .enter()

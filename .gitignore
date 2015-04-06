@@ -31,9 +31,17 @@ bower_components/
 server/node_modules/
 server/bower_components/
 
+#api key
+server/api_key.js
+
 
 # Floobits
 .floo
 .floobit
 .floo
 .flooignore
+
+
+#.DSSTORE
+.DS_STORE
+
