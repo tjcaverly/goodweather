@@ -24,10 +24,6 @@ var getData = function() {
 
 d3.select('.getData').on('click', getData);
 
-d3.select(".options")
-        .selectAll("div")
-        .data()
-
 var updateLocal = function(prefs){
   d3.select(".local")
         .selectAll("p")
