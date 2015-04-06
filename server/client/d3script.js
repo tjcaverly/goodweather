@@ -2,10 +2,12 @@ var constants = {
   r:10
 };
 
-var defaultPrefs = {
-  "clouds": .1,
-  "rain": .1
-};
+var defaultPrefs =   {
+  "hightemp": 60,
+  "lowtemp": 50,
+  "clouds": 0,
+  "rain": 0.2
+}
 
 var localData = [];
 
@@ -24,6 +26,7 @@ d3.select('.getData').on('click', getData);
 
 d3.select(".options")
         .selectAll("div")
+        .data()
 
 var updateLocal = function(prefs){
   d3.select(".local")

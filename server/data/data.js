@@ -19,28 +19,28 @@ exports.test = function() {
       "rain": 0.0
     },
     {
-      "hightemp": 0,
-      "lowtemp": 0,
+      "hightemp": 60,
+      "lowtemp": 50,
       "clouds": 1,
       "rain": 1
     },
     {
-      "hightemp": 0,
-      "lowtemp": 0,
+      "hightemp": 60,
+      "lowtemp": 50,
       "clouds": .7,
-      "rain": 1
+      "rain": .3
     },
     {
-      "hightemp": 0,
-      "lowtemp": 0,
+      "hightemp": 60,
+      "lowtemp": 50,
       "clouds": .3,
-      "rain": 1
+      "rain": .3
     },
     {
-      "hightemp": 0,
-      "lowtemp": 0,
+      "hightemp": 60,
+      "lowtemp": 50,
       "clouds": .5,
-      "rain": 1
+      "rain": .3
     }
   ]
 }
