@@ -28,6 +28,10 @@ dist/
 node_modules/
 bower_components/
 
+server/node_modules/
+server/bower_components/
+
+
 # Floobits
 .floo
 .floobit
