@@ -23,6 +23,24 @@ exports.test = function() {
       "lowtemp": 0,
       "clouds": 1,
       "rain": 1
+    },
+    {
+      "hightemp": 0,
+      "lowtemp": 0,
+      "clouds": .7,
+      "rain": 1
+    },
+    {
+      "hightemp": 0,
+      "lowtemp": 0,
+      "clouds": .3,
+      "rain": 1
+    },
+    {
+      "hightemp": 0,
+      "lowtemp": 0,
+      "clouds": .5,
+      "rain": 1
     }
   ]
 }

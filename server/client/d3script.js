@@ -2,9 +2,12 @@ var constants = {
   r:10
 };
 
-var localData = {};
+var defaultPrefs = {
+  "clouds": .1,
+  "rain": .1
+};
 
-var toggle = true;
+var localData = [];
 
 var getData = function() {
   d3.json('api', function(error, data) {
@@ -12,14 +15,15 @@ var getData = function() {
       console.log(error);
     } else{
       localData = data;
-      var tempPrefs = toggle ? samplePref : sample2;
-      toggle = !toggle;
-      updateLocal(tempPrefs);
+      updateLocal(defaultPrefs);
     }
   });
 };
 
 d3.select('.getData').on('click', getData);
+
+d3.select(".options")
+        .selectAll("div")
 
 var updateLocal = function(prefs){
   d3.select(".local")

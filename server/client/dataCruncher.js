@@ -1,14 +1,3 @@
-var samplePref = {
-      "hightemp": 70,
-      "lowtemp": 50,
-      "clouds": 0.5,
-      "rain": .2 };
-
-var sample2 = {
-  "clouds": 0
-}
-
-
 var goodnessAsProb = function(prefs, data) {
 
   var total = 0;
