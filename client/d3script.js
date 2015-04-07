@@ -11,6 +11,8 @@ var getData = function() {
   d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
     if (error) {
       console.log(error);
+      city = "BAD ZIP";
+      updateLocal(defaultPrefs);
     } else{
       localData = data.data;
       city = data.city;
