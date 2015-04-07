@@ -1,21 +1,54 @@
-a {
-  font-size: 50;
-  font-family: "Helvetica Neue", Helvetica, Sans-Serif;
-  font-weight: bold;
+body {
+  background-color: black;
+}
+
+.container {
+  background-color: white;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
 }
 
 .zip {
-  float: right;
-  clear: auto;
   color: red;
+  margin: auto;
 }
 
-div.options {
-  border: 2px solid black;
+.options {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+
+}
+
+.option {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5;
+  border: 2px solid blue;
   border-radius: 2px;
+
+  
+}
+
+.city {
+  float: right;
+  margin-right: 100px
 }
 
 div {
-  float: left;
   padding: 5px;
+  margin: 5px;
+}
+
+.powered {
+  display: block;
+  margin: auto;
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Sans-Serif;
+  font-weight: bold;
+  text-align: center;
+  
 }

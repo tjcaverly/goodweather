@@ -28,7 +28,10 @@ var init = function(prefs){
 
   d3.select('svg')
         .attr({'width':(2*constants.r + 5)*7,
-                'height': constants.r * 8
+                'height': constants.r * 10
+                });
+  d3.select('.container')
+        .style({'width':(2*constants.r + 5)*7+100+'px'
                 });
 
   d3.select(".local")
@@ -71,15 +74,18 @@ var init = function(prefs){
         .text(function(d, i){
           return d + ': ' + defaultPrefs[d].ideal ;
         })
+        .classed({"option":true})
         .on('click', function(d, i) {
           defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
           updateLocal(defaultPrefs);
         })
+
   d3.select(".zip")
       .selectAll('div')
       .data(["City"])
       .enter()
       .append('div')
+      .classed({'city':true})
       .text(function(d) {
         return d;
       });
