@@ -1,5 +1,4 @@
 var goodnessAsProb = function(prefs, data, margins) {
-  debugger;
   var total = 0;
   var maximum = 0;
   for (var key in prefs) {

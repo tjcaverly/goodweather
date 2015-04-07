@@ -31,3 +31,5 @@ var testPrefs =   {
   "wind": {"ideal": 0,
                "weight": 0.1}
 }
+
+var days = ['Su', 'Mo','Tu','We','Th','Fr', 'Sa']
