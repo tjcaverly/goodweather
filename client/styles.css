@@ -3,3 +3,19 @@ a {
   font-family: "Helvetica Neue", Helvetica, Sans-Serif;
   font-weight: bold;
 }
+
+.zip {
+  float: right;
+  clear: auto;
+  color: red;
+}
+
+div.options {
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+div {
+  float: left;
+  padding: 5px;
+}

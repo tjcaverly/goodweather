@@ -19,19 +19,22 @@ router.get('/:zip', function(req, res, next) {
 
   var _res = res;
 
-  if (true){
+  if (false){
     request.get(theURL, function(error, response, body) {
       if (error) {
         console.log(error);
         _res.end(400);
       } else {
         var theData = data.parseDarkcloud(body);
-        theData.city = cityName;
-        _res.end(JSON.stringify(theData));
+        var dataObject = {data:theData,
+                          city: cityName};
+        _res.end(JSON.stringify(dataObject));
       }
     });
   } else {
-    _res.end(JSON.stringify(data.parsedData));
+    var dataObject = {data:data.parsedData,
+                      city: cityName};
+    _res.end(JSON.stringify(dataObject));
   }
 
 });

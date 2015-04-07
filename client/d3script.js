@@ -5,13 +5,15 @@ var constants = {
 var localData = [{},{},{},{},{},{},{}];
 var first = true;
 var textColor = 'grey';
+var city;
 
 var getData = function() {
   d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
     if (error) {
       console.log(error);
     } else{
-      localData = data;
+      localData = data.data;
+      city = data.city;
       textColor = "black";
       updateLocal(defaultPrefs);
     }
@@ -70,13 +72,28 @@ var init = function(prefs){
           return d + ': ' + defaultPrefs[d].ideal ;
         })
         .on('click', function(d, i) {
-          defaultPrefs[d].ideal = prompt('Enter your preference for ' + d);
+          defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
           updateLocal(defaultPrefs);
         })
+  d3.select(".zip")
+      .selectAll('div')
+      .data(["City"])
+      .enter()
+      .append('div')
+      .text(function(d) {
+        return d;
+      });
 
 };
 
 var updateLocal = function(prefs){
+
+  d3.select(".zip")
+      .selectAll('div')
+      .data([city])
+      .transition()
+      .text(city)
+
   d3.select(".local")
         .selectAll("circle")
         .data(localData)
