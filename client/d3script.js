@@ -2,7 +2,8 @@ var constants = {
   r:10
 };
 
-var localData = [];
+var localData = [{},{},{},{},{},{},{}];
+var first = true;
 
 var getData = function() {
   d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
@@ -10,7 +11,6 @@ var getData = function() {
       console.log(error);
     } else{
       localData = data;
-      console.log(data);
       updateLocal(testPrefs);
     }
   });
@@ -18,9 +18,9 @@ var getData = function() {
 
 d3.select('.getData').on('click', getData);
 
-var updateLocal = function(prefs){
+var createLocal = function(prefs){
   d3.select(".local")
-        .selectAll("p")
+        .selectAll("circle")
         .data(localData)
         .enter()
         .append("circle")
@@ -36,3 +36,18 @@ var updateLocal = function(prefs){
 
 };
 
+var updateLocal = function(prefs){
+  d3.select(".local")
+        .selectAll("circle")
+        .data(localData)
+        .transition()
+        .attr('fill', function(d){
+          var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
+          return "rgb("+(255-g)+","+g+",0)";
+        })
+
+
+};
+
+
+createLocal({});
