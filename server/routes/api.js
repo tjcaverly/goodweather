@@ -14,17 +14,20 @@ router.get('/:zip', function(req, res, next) {
   var cityParams = city.zip_lookup(req.params.zip);
   var latitude = cityParams.latitude;
   var longitude = cityParams.longitude;
+  var cityName = cityParams.city;
   var theURL = apiURL + latitude+','+longitude;
 
   var _res = res;
 
-  if (false){
+  if (true){
     request.get(theURL, function(error, response, body) {
       if (error) {
         console.log(error);
         _res.end(400);
       } else {
-        _res.end(JSON.stringify(data.parseDarkcloud(body)));
+        var theData = data.parseDarkcloud(body);
+        theData.city = cityName;
+        _res.end(JSON.stringify(theData));
       }
     });
   } else {
