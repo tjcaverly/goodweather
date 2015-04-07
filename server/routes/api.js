@@ -25,8 +25,7 @@ router.get('/:zip', function(req, res, next) {
       console.log(error);
       _res.end(400);
     } else {
-      console.log(body);
-      _res.end(body);
+      _res.end(JSON.stringify(data.parseDarkcloud(body)));
     }
   });
 

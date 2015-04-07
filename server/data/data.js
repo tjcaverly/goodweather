@@ -53,6 +53,13 @@ exports.city = function(zipcode) {
 
 exports.parseDarkcloud = function(data) {
   var days = [];
+  jData = JSON.parse(data);
+  var daysObj = jData.daily.data
+  for (var i = 0; i<7; i++) {
+    days.push({"hightemp": daysObj[i].apparentTemperatureMax,
+                "rain": daysObj[i].chancePrecip})
+  }
+  return days;
 
 }
 
