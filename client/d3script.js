@@ -9,6 +9,7 @@ d3.select('svg')
 
 var localData = [{},{},{},{},{},{},{}];
 var first = true;
+var textColor = 'grey';
 
 var getData = function() {
   d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
@@ -16,7 +17,8 @@ var getData = function() {
       console.log(error);
     } else{
       localData = data;
-      updateLocal(testPrefs);
+      textColor = "black";
+      updateLocal(defaultPrefs);
     }
   });
 };
@@ -25,7 +27,7 @@ var getData = function() {
 
 d3.select('.getData').on('click', getData);
 
-var createLocal = function(prefs){
+var init = function(prefs){
   d3.select(".local")
         .selectAll("circle")
         .data(localData)
@@ -49,13 +51,25 @@ var createLocal = function(prefs){
         .text(function(d, i){
           return days[(new Date().getDay() + i)%7];
         })
-        .attr("fill", "grey")
+        .attr("fill", textColor)
         .attr("x", function(d, i){
           return (2*constants.r+2)*i + constants.r - constants.r/3;
         })
         .attr("y", constants.r + constants.r/6)
-
         .attr("font-family","Helvetica, Sans-Serif")
+
+  d3.select(".options")
+        .selectAll("div")
+        .data(attributes)
+        .enter()
+        .append("div")
+        .text(function(d, i){
+          return d + ': ' + defaultPrefs[d].ideal ;
+        })
+        .on('click', function(d, i) {
+          defaultPrefs[d].ideal = prompt('Enter your preference for ' + d);
+          updateLocal(defaultPrefs);
+        })
 
 };
 
@@ -72,10 +86,17 @@ var updateLocal = function(prefs){
         .selectAll("text")
         .data(localData)
         .transition()
-        .attr('fill', 'black');
+        .attr('fill', textColor);
+
+  d3.select(".options")
+        .selectAll("div")
+        .data(attributes)
+        .text(function(d, i){
+          return d + ': ' + defaultPrefs[d].ideal ;
+        })
 
 
 };
 
 
-createLocal({});
+init(defaultPrefs);

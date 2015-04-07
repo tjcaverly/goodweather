@@ -6,6 +6,8 @@ var defaultMargin =   {
   "wind": 5
 }
 
+var attributes = Object.keys(defaultMargin);
+
 var defaultPrefs =   {
   "hightemp": {"ideal": 70,
                "weight": 1},
