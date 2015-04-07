@@ -55,7 +55,6 @@ exports.parseDarkcloud = function(data) {
   var days = [];
   jData = JSON.parse(data);
   var daysObj = jData.daily.data
-  console.log(daysObj);
   for (var i = 0; i<7; i++) {
     days.push({"hightemp": daysObj[i].apparentTemperatureMax,
                 "rain": daysObj[i].precipProbability,

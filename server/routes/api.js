@@ -11,7 +11,6 @@ var apiURL = apiKey.url;
 
 router.get('/:zip', function(req, res, next) {
 
-
   var cityParams = city.zip_lookup(req.params.zip);
   var latitude = cityParams.latitude;
   var longitude = cityParams.longitude;

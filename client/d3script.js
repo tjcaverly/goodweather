@@ -2,13 +2,6 @@ var constants = {
   r:10
 };
 
-var defaultPrefs =   {
-  "hightemp": 60,
-  "lowtemp": 50,
-  "clouds": 0,
-  "rain": 0.2
-}
-
 var localData = [];
 
 var getData = function() {
@@ -18,7 +11,7 @@ var getData = function() {
     } else{
       localData = data;
       console.log(data);
-      updateLocal(defaultPrefs);
+      updateLocal(testPrefs);
     }
   });
 };
@@ -37,8 +30,9 @@ var updateLocal = function(prefs){
         .attr("cy", constants.r)
         .attr("r", constants.r)
         .attr('fill', function(d){
-          var g = Math.ceil(255*goodnessAsProb(prefs, d));
+          var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
           return "rgb("+(255-g)+","+g+",0)";
         })
 
 };
+

@@ -1,12 +1,13 @@
-var goodnessAsProb = function(prefs, data) {
-
+var goodnessAsProb = function(prefs, data, margins) {
+  debugger;
   var total = 0;
   var maximum = 0;
   for (var key in prefs) {
     if (key in data) {
-      maximum++;
-      total += (1 - ( Math.abs(prefs[key] - data[key]) / ((prefs[key] + data[key]) || 1)));
+      var weight = prefs[key].weight;
+      maximum += weight;
+      total += weight * Math.min(1, Math.abs( (data[key] - prefs[key].ideal) ) / (10*margins[key]));
     }
   }
-  return total/maximum;
+  return (maximum - total)/maximum;
 }
