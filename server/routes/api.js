@@ -19,15 +19,18 @@ router.get('/:zip', function(req, res, next) {
 
   var _res = res;
 
-
-  request.get(theURL, function(error, response, body) {
-    if (error) {
-      console.log(error);
-      _res.end(400);
-    } else {
-      _res.end(JSON.stringify(data.parseDarkcloud(body)));
-    }
-  });
+  if (false){
+    request.get(theURL, function(error, response, body) {
+      if (error) {
+        console.log(error);
+        _res.end(400);
+      } else {
+        _res.end(JSON.stringify(data.parseDarkcloud(body)));
+      }
+    });
+  } else {
+    _res.end(JSON.stringify(data.parsedData));
+  }
 
 });
 
