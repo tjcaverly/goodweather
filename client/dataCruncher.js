@@ -8,5 +8,5 @@ var goodnessAsProb = function(prefs, data, margins) {
       total += weight * Math.min(1, Math.abs( (data[key] - prefs[key].ideal) ) / (10*margins[key]));
     }
   }
-  return (maximum - total)/maximum;
+  return Math.max((maximum - 1.2*total)/maximum, 0);
 }

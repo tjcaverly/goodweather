@@ -27,11 +27,11 @@ d3.select('.getData').on('click', getData);
 var init = function(prefs){
 
   d3.select('svg')
-        .attr({'width':(2*constants.r + 5)*7,
+        .attr({'width':(2*constants.r + 22)*7,
                 'height': constants.r * 10
                 });
   d3.select('.container')
-        .style({'width':(2*constants.r + 5)*7+100+'px'
+        .style({'width':(2*constants.r + 10)*7+100+'px'
                 });
 
   d3.select(".local")
@@ -40,7 +40,7 @@ var init = function(prefs){
         .enter()
         .append("circle")
         .attr("cx", function(d, i){
-          return (2*constants.r+2)*i + constants.r;
+          return (2*constants.r+20)*i + constants.r;
         })
         .attr("cy", constants.r)
         .attr("r", constants.r)
@@ -59,7 +59,7 @@ var init = function(prefs){
         })
         .attr("fill", textColor)
         .attr("x", function(d, i){
-          return (2*constants.r+2)*i + constants.r - this.offsetWidth/2;
+          return (2*constants.r+20)*i + constants.r - this.offsetWidth/2;
         })
         .attr("y", function() {
           return constants.r + this.offsetHeight/4;

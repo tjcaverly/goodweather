@@ -19,7 +19,7 @@ router.get('/:zip', function(req, res, next) {
 
   var _res = res;
 
-  if (false){
+  if (true){
     request.get(theURL, function(error, response, body) {
       if (error) {
         console.log(error);
