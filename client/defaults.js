@@ -12,7 +12,7 @@ var defaultPrefs =   {
   "hightemp": {"ideal": 70,
                "weight": 1},
   "lowtemp": {"ideal": 50,
-               "weight": 1},
+               "weight": 0},
   "clouds": {"ideal": 0.2,
                "weight": 1},
   "rain": {"ideal": 0.0,
