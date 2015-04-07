@@ -45,3 +45,5 @@ server/api_key.js
 #.DSSTORE
 .DS_STORE
 
+#todo list
+todo.org
