@@ -2,11 +2,6 @@ var constants = {
   r:30
 };
 
-d3.select('svg')
-      .attr({'width':(2*constants.r + 5)*7,
-              'height': constants.r * 2
-              });
-
 var localData = [{},{},{},{},{},{},{}];
 var first = true;
 var textColor = 'grey';
@@ -28,6 +23,12 @@ var getData = function() {
 d3.select('.getData').on('click', getData);
 
 var init = function(prefs){
+
+  d3.select('svg')
+        .attr({'width':(2*constants.r + 5)*7,
+                'height': constants.r * 8
+                });
+
   d3.select(".local")
         .selectAll("circle")
         .data(localData)
@@ -53,10 +54,12 @@ var init = function(prefs){
         })
         .attr("fill", textColor)
         .attr("x", function(d, i){
-          return (2*constants.r+2)*i + constants.r - constants.r/3;
+          return (2*constants.r+2)*i + constants.r - this.offsetWidth/2;
         })
-        .attr("y", constants.r + constants.r/6)
-        .attr("font-family","Helvetica, Sans-Serif")
+        .attr("y", function() {
+          return constants.r + this.offsetHeight/4;
+        })
+        .attr("font-family","Helvetica Neue, Helvetica, Sans-Serif")
 
   d3.select(".options")
         .selectAll("div")
