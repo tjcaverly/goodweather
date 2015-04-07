@@ -1,3 +1,5 @@
+city = require('cities');
+
 exports.test = function() {
   return [
     {
@@ -44,3 +46,13 @@ exports.test = function() {
     }
   ]
 }
+
+exports.city = function(zipcode) {
+  return city.zipLookup(zipcode);
+}
+
+exports.parseDarkcloud = function(data) {
+  var days = [];
+
+}
+

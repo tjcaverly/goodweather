@@ -12,11 +12,12 @@ var defaultPrefs =   {
 var localData = [];
 
 var getData = function() {
-  d3.json('api', function(error, data) {
+  d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
     if (error) {
       console.log(error);
     } else{
       localData = data;
+      console.log(data);
       updateLocal(defaultPrefs);
     }
   });
