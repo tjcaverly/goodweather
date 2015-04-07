@@ -38,7 +38,7 @@ var createLocal = function(prefs){
         .attr("r", constants.r)
         .attr('fill', function(d){
           var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
-          return "rgb("+(255-g)+","+g+",0)";
+          return "rgb(0,0,0)";
         })
 
   d3.select(".local")
@@ -66,7 +66,7 @@ var updateLocal = function(prefs){
         .transition()
         .attr('fill', function(d){
           var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
-          return "rgb("+(255-g)+","+g+",0)";
+          return "rgb("+(255-g)+","+g+","+g+")";
         })
   d3.select(".local")
         .selectAll("text")
