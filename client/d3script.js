@@ -55,6 +55,7 @@ var init = function(prefs){
           return "rgb(0,0,0)";
         })
 
+
   d3.select(".local")
         .selectAll("text")
         .data(days)
@@ -77,10 +78,24 @@ var init = function(prefs){
         .data(attributes)
         .enter()
         .append("div")
+        .classed({"option":true})
+        // .text(function(d, i){
+        //   return d + ': ' + defaultPrefs[d].ideal ;
+        // })
+        // .on('click', function(d, i) {
+        //   defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
+        //   updateLocal(defaultPrefs);
+        // })
+
+  d3.selectAll(".option")
+        .selectAll('span')
+        .data(function(d,i){return [d];})
+        .enter()
+        .append('span')
         .text(function(d, i){
           return d + ': ' + defaultPrefs[d].ideal ;
         })
-        .classed({"option":true})
+        .classed({"ideal":true})
         .on('click', function(d, i) {
           defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
           updateLocal(defaultPrefs);
@@ -103,7 +118,6 @@ var updateLocal = function(prefs){
   d3.select(".zip")
       .selectAll('div')
       .data([city])
-      .transition()
       .text(city)
 
   d3.select(".local")
@@ -121,10 +135,10 @@ var updateLocal = function(prefs){
         .attr('fill', textColor);
 
   d3.select(".options")
-        .selectAll("div")
+        .selectAll(".ideal")
         .data(attributes)
         .text(function(d, i){
-          return d + ': ' + defaultPrefs[d].ideal ;
+          return d + ': ' + defaultPrefs[d].ideal;
         })
 
 
