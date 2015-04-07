@@ -26,13 +26,17 @@ d3.select('.getData').on('click', getData);
 
 var init = function(prefs){
 
-  d3.select('svg')
+  d3.select('.local')
         .attr({'width':(2*constants.r + 22)*7,
-                'height': constants.r * 10
-                });
+                'height': constants.r * 12
+                })
+        .attr('transform','translate(15,0)');
   d3.select('.container')
         .style({'width':(2*constants.r + 10)*7+100+'px'
                 });
+
+  d3.select('svg')
+        .attr({'height': constants.r * 12});
 
   d3.select(".local")
         .selectAll("circle")
