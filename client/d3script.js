@@ -31,7 +31,7 @@ var init = function(prefs){
 
   d3.select('.local')
         .attr({'width':(2*constants.r + 22)*7,
-                'height': constants.r * 12
+                'height': constants.r * 10
                 })
         .attr('transform','translate(15,0)');
   d3.select('.container')
@@ -39,7 +39,7 @@ var init = function(prefs){
                 });
 
   d3.select('svg')
-        .attr({'height': constants.r * 12});
+        .attr({'height': constants.r * 10});
 
   d3.select(".local")
         .selectAll("circle")
@@ -130,7 +130,7 @@ var init = function(prefs){
         .classed({"dailyData":true})
         .attr('x', 20)
         .attr('y', function(d, i) {
-          return 100 + 50 * i;
+          return 100 + 40 * i;
         })
         .text(function(d, i){
           if (localData[day][d]!==undefined){

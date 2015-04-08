@@ -21,11 +21,11 @@ var defaultPrefs =   {
                "weight": 1},
   "lowtemp": {"ideal": 50,
                "weight": 0},
-  "clouds": {"ideal": 20,
+  "clouds": {"ideal": 0,
                "weight": 1},
-  "rain": {"ideal": 20,
+  "rain": {"ideal": 0,
                "weight": 3},
-  "wind": {"ideal": 0,
+  "wind": {"ideal": 5,
                "weight": 1}
 }
 
