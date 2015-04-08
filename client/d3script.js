@@ -6,6 +6,7 @@ var localData = [{},{},{},{},{},{},{}];
 var first = true;
 var textColor = 'grey';
 var city;
+var whichDay = 0;
 
 var getData = function() {
   d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
@@ -54,6 +55,9 @@ var init = function(prefs){
           var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
           return "rgb(0,0,0)";
         })
+        .on('mouseover', function(d, i){
+          showDay(i);
+        })
 
 
   d3.select(".local")
@@ -79,13 +83,6 @@ var init = function(prefs){
         .enter()
         .append("div")
         .classed({"option":true})
-        // .text(function(d, i){
-        //   return d + ': ' + defaultPrefs[d].ideal ;
-        // })
-        // .on('click', function(d, i) {
-        //   defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
-        //   updateLocal(defaultPrefs);
-        // })
 
   d3.selectAll(".option")
         .selectAll('.ideal')
@@ -125,6 +122,25 @@ var init = function(prefs){
         return d;
       });
 
+  d3.select(".local")
+        .selectAll(".dailyData")
+        .data(attributes)
+        .enter()
+        .append("text")
+        .classed({"dailyData":true})
+        .attr('x', 20)
+        .attr('y', function(d, i) {
+          return 100 + 50 * i;
+        })
+        .text(function(d, i){
+          if (localData[day][d]!==undefined){
+            return d + ': ' + localData[day][d]+defaultUnits[d];
+          } else {
+            return '';
+          }
+        })
+
+
 };
 
 var updateLocal = function(prefs){
@@ -163,9 +179,26 @@ var updateLocal = function(prefs){
         .text(function(d, i){
           return "How much I care about this: " + defaultPrefs[d].weight;
         })
+  showDay(whichDay)
 
 
 };
+
+var showDay = function(day) {
+  whichDay = day
+  d3.select(".local")
+    .selectAll(".dailyData")
+    .data(attributes)
+    .text(function(d, i){
+      if (localData[day][d]!==undefined){
+        return d + ': ' + localData[day][d]+defaultUnits[d];
+      } else {
+        return '';
+      }
+    })
+
+
+}
 
 
 init(defaultPrefs);
