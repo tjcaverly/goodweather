@@ -88,7 +88,7 @@ var init = function(prefs){
         // })
 
   d3.selectAll(".option")
-        .selectAll('span')
+        .selectAll('.ideal')
         .data(function(d,i){return [d];})
         .enter()
         .append('span')
@@ -98,6 +98,20 @@ var init = function(prefs){
         .classed({"ideal":true})
         .on('click', function(d, i) {
           defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
+          updateLocal(defaultPrefs);
+        })
+
+  d3.selectAll(".option")
+        .selectAll('.weight')
+        .data(function(d,i){return [d];})
+        .enter()
+        .append('span')
+        .text(function(d, i){
+          return "How much I care about this: " + defaultPrefs[d].weight ;
+        })
+        .classed({"weight":true})
+        .on('click', function(d, i) {
+          defaultPrefs[d].weight = Number(prompt('Enter your weighting for: ' + d) || defaultPrefs[d].weight);
           updateLocal(defaultPrefs);
         })
 
@@ -114,6 +128,7 @@ var init = function(prefs){
 };
 
 var updateLocal = function(prefs){
+  console.log(prefs);
 
   d3.select(".zip")
       .selectAll('div')
@@ -128,6 +143,7 @@ var updateLocal = function(prefs){
           var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
           return "rgb("+(255-g)+","+g+","+g+")";
         })
+
   d3.select(".local")
         .selectAll("text")
         .data(localData)
@@ -139,6 +155,13 @@ var updateLocal = function(prefs){
         .data(attributes)
         .text(function(d, i){
           return d + ': ' + defaultPrefs[d].ideal;
+        })
+
+  d3.select(".options")
+        .selectAll(".weight")
+        .data(attributes)
+        .text(function(d, i){
+          return "How much I care about this: " + defaultPrefs[d].weight;
         })
 
 
