@@ -6,21 +6,35 @@
   </head>
 
   <body>
+
     <div class='container'>
-      <div class='zip'><input name="zipcode" placeholder="enter zip code"/><button class='getdata'>get data</div>
-      <div class='aboveoptions'><div class='preference'>Your Preferences</div><div class='preference2'>(click on numbers to change them)</div></div>
-      <div class='options'>
+
+      <div class='zip'>
+        <input name="zipcode" placeholder="enter zip code"/>
+        <button class='getdata'>get data</button>
       </div>
+
+      <div class='aboveoptions'>
+        <div class='preference'>Your Preferences</div>
+        <div class='preference2'>(click on numbers to change them)</div>
+      </div>
+
+      <div class='options'></div>
+      
       <div class='local-container'>
         <svg width="100%"><g class='local'></g></svg>
       </div>
+      
       <div>
         <a href=http://forecast.io target=_blank class='powered'>Powered by Forecast</a>
       </div>
+
     </div>
+    
     <script src="defaults.js"></script>    
     <script src="dataCruncher.js"></script>
     <script src="d3script.js"></script>
+
   </body>
 
 
