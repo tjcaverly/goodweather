@@ -57,9 +57,9 @@ exports.parseDarkcloud = function(data) {
   var daysObj = jData.daily.data
   for (var i = 0; i<7; i++) {
     days.push({"hightemp": daysObj[i].apparentTemperatureMax,
-                "rain": daysObj[i].precipProbability,
+                "rain": daysObj[i].precipProbability * 100,
                 "lowtemp": daysObj[i].temperatureMin,
-                "clouds": daysObj[i].cloudCover,
+                "clouds": daysObj[i].cloudCover * 100,
                 "wind": daysObj[i].windSpeed 
               })
   }

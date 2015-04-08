@@ -93,7 +93,7 @@ var init = function(prefs){
         .enter()
         .append('span')
         .text(function(d, i){
-          return d + ': ' + defaultPrefs[d].ideal ;
+          return d + ': ' + defaultPrefs[d].ideal + defaultUnits[d];
         })
         .classed({"ideal":true})
         .on('click', function(d, i) {
@@ -154,7 +154,7 @@ var updateLocal = function(prefs){
         .selectAll(".ideal")
         .data(attributes)
         .text(function(d, i){
-          return d + ': ' + defaultPrefs[d].ideal;
+          return d + ': ' + defaultPrefs[d].ideal+defaultUnits[d];
         })
 
   d3.select(".options")
