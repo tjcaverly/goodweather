@@ -7,7 +7,8 @@ var city = require('cities');
 var request = require('request');
 var fs = require('fs');
 
-var apiURL = apiKey.url;
+var apiKey = apiKey.key;
+var apiURL = "https://api.forecast.io/forecast/"+apiKey+'/'
 
 router.get('/:zip', function(req, res, next) {
 
@@ -16,7 +17,7 @@ router.get('/:zip', function(req, res, next) {
   var longitude = cityParams.longitude;
   var cityName = cityParams.city;
   var theURL = apiURL + latitude+','+longitude;
-
+  console.log(theURL);
   var _res = res;
 
   if (true){
