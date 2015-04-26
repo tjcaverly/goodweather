@@ -2,12 +2,16 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var data = require('../data/data');
-var apiKey = require('../api_key');
+
 var city = require('cities');
 var request = require('request');
 var fs = require('fs');
 
-var apiKey = apiKey.key;
+if (!process.env.CLOUD_NAME) {
+  var apiKey = require('../api_key');;  
+}
+
+var apiKey = process.env.API_KEY || apiKey.key;
 var apiURL = "https://api.forecast.io/forecast/"+apiKey+'/'
 
 router.get('/:zip', function(req, res, next) {
