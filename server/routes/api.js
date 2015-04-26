@@ -7,7 +7,7 @@ var city = require('cities');
 var request = require('request');
 var fs = require('fs');
 
-if (!process.env.CLOUD_NAME) {
+if (!process.env.PORT) {
   var apiKey = require('../api_key');;  
 }
 
