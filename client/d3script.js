@@ -13,7 +13,7 @@ var day;
 var getData = function(defaultZip) {
 
   var zip = defaultZip || d3.select('#zipcode').node().value;
-  
+
   if (d3.event) {
     d3.event.preventDefault();  
   }
@@ -31,6 +31,8 @@ var getData = function(defaultZip) {
     }
   });
 };
+
+d3.select('.getDataForm').on('submit', getData);
 
 var init = function(prefs) {
 
