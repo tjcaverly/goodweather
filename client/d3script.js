@@ -8,10 +8,17 @@ var first = true;
 var textColor = 'grey';
 var city;
 var whichDay = 0;
+var day;
 
-var getData = function() {
-  d3.event.preventDefault();
-  d3.json('api/'+d3.select('#zipcode').node().value, function(error, data) {
+var getData = function(defaultZip) {
+
+  var zip = defaultZip || d3.select('#zipcode').node().value;
+  
+  if (d3.event) {
+    d3.event.preventDefault();  
+  }
+
+  d3.json('api/' + zip, function(error, data) {
     if (error) {
       console.log(error);
       city = "BAD ZIP";
@@ -23,10 +30,7 @@ var getData = function() {
       updateLocal(defaultPrefs);
     }
   });
-  return false;
 };
-
-d3.select('.getDataForm').on('submit', getData);
 
 var init = function(prefs) {
 
@@ -48,13 +52,13 @@ var init = function(prefs) {
         .data(localData)
         .enter()
         .append("circle")
-        .attr("cx", function(d, i){
+        .attr("cx", function(d, i) {
           return (2*constants.r+20)*i + constants.r;
         })
         .attr("cy", constants.r)
         .attr("r", constants.r)
-        .attr('fill', function(d){
-          var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
+        .attr('fill', function(d) {
+          var g = Math.ceil(255 * goodnessAsProb(prefs, d, defaultMargin));
           return "rgb(0,0,0)";
         })
         .on('mouseover', function(d, i){
@@ -90,7 +94,7 @@ var init = function(prefs) {
         .data(function(d,i){return [d];})
         .enter()
         .append('span')
-        .text(function(d, i){
+        .text(function(d, i) {
           return d + ': ' + defaultPrefs[d].ideal + defaultUnits[d];
         })
         .classed({"ideal":true})
@@ -101,10 +105,10 @@ var init = function(prefs) {
 
   d3.selectAll(".option")
         .selectAll('.weight')
-        .data(function(d,i){return [d];})
+        .data(function(d,i) {return [d];})
         .enter()
         .append('span')
-        .text(function(d, i){
+        .text(function(d, i) {
           return "How much I care about this: " + defaultPrefs[d].weight ;
         })
         .classed({"weight":true})
@@ -134,7 +138,7 @@ var init = function(prefs) {
           return 100 + 40 * i;
         })
         .text(function(d, i){
-          if (localData[day][d]!==undefined){
+          if (day !==undefined && localData[day][d]!==undefined) {
             return d + ': ' + localData[day][d]+defaultUnits[d];
           } else {
             return '';
@@ -200,3 +204,4 @@ var showDay = function(day) {
 
 
 init(defaultPrefs);
+getData(constants.defaultZip);
