@@ -1,5 +1,6 @@
 var constants = {
-  r:30
+  r:30,
+  defaultZip:94102
 };
 
 var localData = [{},{},{},{},{},{},{}];
@@ -9,31 +10,32 @@ var city;
 var whichDay = 0;
 
 var getData = function() {
-  d3.json('api/'+d3.select('.zip input').node().value, function(error, data) {
+  d3.event.preventDefault();
+  d3.json('api/'+d3.select('#zipcode').node().value, function(error, data) {
     if (error) {
       console.log(error);
       city = "BAD ZIP";
       updateLocal(defaultPrefs);
-    } else{
+    } else {
       localData = data.data;
       city = data.city;
       textColor = "black";
       updateLocal(defaultPrefs);
     }
   });
+  return false;
 };
 
+d3.select('.getDataForm').on('submit', getData);
 
-
-d3.select('.getData').on('click', getData);
-
-var init = function(prefs){
+var init = function(prefs) {
 
   d3.select('.local')
         .attr({'width':(2*constants.r + 22)*7,
                 'height': constants.r * 10
                 })
         .attr('transform','translate(15,0)');
+
   d3.select('.container')
         .style({'width':(2*constants.r + 10)*7+100+'px'
                 });
@@ -57,8 +59,7 @@ var init = function(prefs){
         })
         .on('mouseover', function(d, i){
           showDay(i);
-        })
-
+        });
 
   d3.select(".local")
         .selectAll("text")
@@ -66,7 +67,7 @@ var init = function(prefs){
         .enter()
         .append("text")
         .text(function(d, i){
-          return days[(new Date().getDay() + i)%7];
+          return days[(new Date().getDay() + i) % 7];
         })
         .attr("fill", textColor)
         .attr("x", function(d, i){
@@ -75,14 +76,14 @@ var init = function(prefs){
         .attr("y", function() {
           return constants.r + this.offsetHeight/4;
         })
-        .attr("font-family","Helvetica Neue, Helvetica, Sans-Serif")
+        .attr("font-family","Helvetica Neue, Helvetica, Sans-Serif");
 
   d3.select(".options")
         .selectAll("div")
         .data(attributes)
         .enter()
         .append("div")
-        .classed({"option":true})
+        .classed({"option":true});
 
   d3.selectAll(".option")
         .selectAll('.ideal')
@@ -96,7 +97,7 @@ var init = function(prefs){
         .on('click', function(d, i) {
           defaultPrefs[d].ideal = prompt('Enter your preference for ' + d) || defaultPrefs[d].ideal;
           updateLocal(defaultPrefs);
-        })
+        });
 
   d3.selectAll(".option")
         .selectAll('.weight')
@@ -110,7 +111,7 @@ var init = function(prefs){
         .on('click', function(d, i) {
           defaultPrefs[d].weight = Number(prompt('Enter your weighting for: ' + d) || defaultPrefs[d].weight);
           updateLocal(defaultPrefs);
-        })
+        });
 
   d3.select(".zip")
       .selectAll('div')
@@ -138,27 +139,26 @@ var init = function(prefs){
           } else {
             return '';
           }
-        })
+        });
 
 
 };
 
 var updateLocal = function(prefs){
-  console.log(prefs);
 
   d3.select(".zip")
       .selectAll('div')
       .data([city])
-      .text(city)
+      .text(city);
 
   d3.select(".local")
         .selectAll("circle")
         .data(localData)
         .transition()
-        .attr('fill', function(d){
+        .attr('fill', function(d) {
           var g = Math.ceil(255*goodnessAsProb(prefs, d, defaultMargin));
           return "rgb("+(255-g)+","+g+","+g+")";
-        })
+        });
 
   d3.select(".local")
         .selectAll("text")
@@ -169,36 +169,34 @@ var updateLocal = function(prefs){
   d3.select(".options")
         .selectAll(".ideal")
         .data(attributes)
-        .text(function(d, i){
+        .text(function(d, i) {
           return d + ': ' + defaultPrefs[d].ideal+defaultUnits[d];
-        })
+        });
 
   d3.select(".options")
         .selectAll(".weight")
         .data(attributes)
-        .text(function(d, i){
+        .text(function(d, i) {
           return "How much I care about this: " + defaultPrefs[d].weight;
-        })
-  showDay(whichDay)
+        });
 
-
+  showDay(whichDay);
 };
 
 var showDay = function(day) {
-  whichDay = day
+  whichDay = day;
+
   d3.select(".local")
     .selectAll(".dailyData")
     .data(attributes)
-    .text(function(d, i){
+    .text(function(d, i) {
       if (localData[day][d]!==undefined){
         return d + ': ' + localData[day][d]+defaultUnits[d];
       } else {
         return '';
       }
-    })
-
-
-}
+    });
+};
 
 
 init(defaultPrefs);

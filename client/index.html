@@ -9,10 +9,10 @@
 
     <div class='container'>
 
-      <div class='zip'>
-        <input name="zipcode" placeholder="enter zip code"/>
-        <button class='getdata'>get data</button>
-      </div>
+      <form class='zip getDataForm' onsubmit='getdata' method='post'>
+        <input id="zipcode" name="zipcode" placeholder="enter zip code"/>
+        <button class='getdata' action="submit">get data</button>
+      </form>
 
       <div class='aboveoptions'>
         <div class='preference'>Your Preferences</div>
